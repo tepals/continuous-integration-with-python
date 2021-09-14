@@ -3,7 +3,7 @@
 
 name: Python application
 
-on: [push]
+on: [push]  # push or pull_request or ....
 #  push:
 #    branches: [ $default-branch ]
 #  pull_request:
