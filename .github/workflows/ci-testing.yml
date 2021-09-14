@@ -12,24 +12,12 @@ on: [push]  # push or pull_request or ....
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.6
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.6
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Install apt packages
-      uses: ryankurte/action-apt@v0.3.0
-      with:
-        packages: "python3-numpy"
+        sudo apt install -y python3-numpy
     - name: Test with pytest
       run: |
-        export pythonLocation="/usr/lib/python3.6/dist-packages:${pythonLocation}"
-        echo $pythonLocation
-        python -m unittest discover tests
+        python3 -m unittest discover tests
